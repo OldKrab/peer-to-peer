@@ -1,0 +1,23 @@
+syntax = "proto3";
+package peertopeer;
+
+import "google/protobuf/timestamp.proto";
+
+message Message {
+  string message = 1;
+  string sender = 2;
+  string time = 3;
+}
+
+message User{
+  string name = 1;
+}
+
+message Empty {
+
+}
+
+service PeerToPeer {
+  rpc SendMessage(stream Message) returns (stream Message) {}
+  rpc Connect(User) returns (Empty) {}
+}
